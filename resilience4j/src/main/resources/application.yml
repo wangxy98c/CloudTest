@@ -1,0 +1,14 @@
+
+# 注册服务相关
+spring:
+  application:
+    name: resilience4j
+server:
+  port: 5001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka
+  instance:
+    hostname: localhost
+

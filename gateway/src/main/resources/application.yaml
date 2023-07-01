@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: configName
+          uri: lb://provider
+          filters:
+            - AddRequestParameter=name,javaboy
+            #String hello2(@RequestParam("name") String name);值是javaboy。请求转发时自动加上参数。本来没参数不能访问，转发后可以了
+          predicates:
+            - Method=GET
+      discovery:
+        locator:
+          enabled: true #默认为false，开启后自动通过gateway代理
+  application:
+    name: gateway
+logging:
+  level:
+    com.example.gateway: debug
+
+server:
+  port: 6001
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka
